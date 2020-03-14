@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,7 +47,13 @@ public class Employe implements Serializable {
 	@ManyToMany(mappedBy="employes")
 	private List<Departement> departements; 
 	
-	public Employe() { departements= new ArrayList<Departement>();	}
+	@OneToMany(mappedBy="employe")
+	private List<TimeSheet> timesheets;
+	
+	public Employe() {
+		departements= new ArrayList<Departement>();
+		timesheets= new ArrayList<TimeSheet>();
+	}
 
 	public String getPrenom() {
 		return prenom;
@@ -102,6 +109,14 @@ public class Employe implements Serializable {
 
 	public void setDepartements(List<Departement> departements) {
 		this.departements = departements;
+	}
+
+	public List<TimeSheet> getTimesheets() {
+		return timesheets;
+	}
+
+	public void setTimesheets(List<TimeSheet> timesheets) {
+		this.timesheets = timesheets;
 	}
 	
 }

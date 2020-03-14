@@ -29,7 +29,7 @@ public class Departement implements Serializable {
 	
 	//OneToMany list des missions 
 	@OneToMany(cascade=CascadeType.ALL ,mappedBy="departement")
-	private List<Mission> missions; 
+	private List<Mission> missions = new ArrayList<Mission>(); 
 	
 	// ManyToOne avec Entreprise
 	@ManyToOne
@@ -39,7 +39,7 @@ public class Departement implements Serializable {
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Employe> employes;
 	
-	public Departement() { }
+	public Departement() { employes= new ArrayList<Employe>() ; }
 
 	public String getName() {
 		return name;

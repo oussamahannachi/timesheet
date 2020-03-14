@@ -1,7 +1,8 @@
 package entities;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,7 +35,10 @@ public class Mission implements Serializable {
 	@ManyToOne
 	protected Departement departement ;
 	
-	public Mission() {}
+	@OneToMany(mappedBy="mission")
+	private List<TimeSheet> timesheets;
+	
+	public Mission() { timesheets = new ArrayList<TimeSheet>() ; }
 
 	public String getName() { return name; }
 
@@ -46,5 +51,13 @@ public class Mission implements Serializable {
 	public Departement getDepartement() { return departement; }
 
 	public void setDepartement(Departement departement) { this.departement = departement; }
+
+	public List<TimeSheet> getTimesheets() {
+		return timesheets;
+	}
+
+	public void setTimesheets(List<TimeSheet> timesheets) {
+		this.timesheets = timesheets;
+	}
 	
 }
