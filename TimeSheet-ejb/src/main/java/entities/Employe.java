@@ -2,8 +2,8 @@ package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Table;
 
 @Entity
@@ -40,14 +39,14 @@ public class Employe implements Serializable {
 	private Role role;
 	
 	// Relation avec Contrat
-	@OneToOne
+	@OneToOne(mappedBy="employe")
 	private Contrat contrat;
 	
 	// Listes des departemens
-	@ManyToMany(cascade=CascadeType.ALL)
-	private ArrayList<Departement> departements; 
+	@ManyToMany(mappedBy="employes")
+	private List<Departement> departements; 
 	
-	public Employe() {}
+	public Employe() { departements= new ArrayList<Departement>();	}
 
 	public String getPrenom() {
 		return prenom;
@@ -97,11 +96,11 @@ public class Employe implements Serializable {
 		this.contrat = contrat;
 	}
 
-	public ArrayList<Departement> getDepartements() {
+	public List<Departement> getDepartements() {
 		return departements;
 	}
 
-	public void setDepartements(ArrayList<Departement> departements) {
+	public void setDepartements(List<Departement> departements) {
 		this.departements = departements;
 	}
 	

@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,10 +28,10 @@ public class Entreprise implements Serializable {
 	private String raisonSocial;
 	
 	// List departement
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="entreprise")
-	private ArrayList<Departement> departements;
+	@OneToMany(mappedBy="entreprise",cascade=CascadeType.ALL )
+	private List<Departement> departements= new ArrayList<Departement>();
 	
-	public Entreprise() { departements= new ArrayList<Departement>(); }
+	public Entreprise() { }
 
 	public String getName() {
 		return name;
@@ -48,7 +49,7 @@ public class Entreprise implements Serializable {
 		this.raisonSocial = raisonSocial;
 	}
 
-	public ArrayList<Departement> getDepartements() {
+	public List<Departement> getDepartements() {
 		return departements;
 	}
 

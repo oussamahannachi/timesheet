@@ -24,7 +24,7 @@ public class Contrat implements Serializable {
 	private float salaire;
 	
 	// Relation OneToOne avec Employe
-	@OneToOne(mappedBy="contrat")
+	@OneToOne()
 	private Employe employe;
 	
 	public Contrat() {}
