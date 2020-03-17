@@ -38,6 +38,11 @@ public class TimeSheet implements Serializable {
 	private Boolean isActive;
 	
 	public TimeSheet() {}
+	
+	public TimeSheetPk getId() { return id; }
+
+	public void setId(TimeSheetPk id) { this.id = id; }
+
 
 	public Mission getMission() {
 		return mission;

@@ -2,14 +2,20 @@ package services;
 
 
 import java.util.List;
+
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import entities.Contrat;
 import entities.Departement;
 import entities.Employe;
 import interfaces.EmployeServiceLocal;
 import interfaces.EmployeServiceRemote;
 
+@Stateless
 public class EmployeService implements EmployeServiceLocal, EmployeServiceRemote {
 
 	// Création d'un entité manager
@@ -48,13 +54,15 @@ public class EmployeService implements EmployeServiceLocal, EmployeServiceRemote
 
 	@Override
 	public long getNombreEmployeJPQL() {
-		List<Employe> employes = em.createQuery("select * from employe",Employe.class).getResultList();
-		return  (long)employes.size();
+		Query q=em.createQuery("select count(*) from employe");
+		long nombres = (Long)q.getSingleResult();
+		return  nombres;
 	}
 
 	@Override
 	public List<String> getAllEmployeNamesJPQL() {
-		List<String> names = (List<String>)em.createQuery("SELECT prenom FROM employe").getResultList();
+		TypedQuery<String> q = em.createQuery("select prenom from employe",String.class);
+		List<String> names = q.getResultList();
 		return names;
 	}
 

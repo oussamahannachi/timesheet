@@ -9,8 +9,27 @@ public class TimeSheetPk implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idMission ;
 	private int idEmploye ;
-	public TimeSheetPk() {}
 	
+	public TimeSheetPk() {}
+		
+	public int getIdMission() {
+		return idMission;
+	}
+
+	public void setIdMission(int idMission) {
+		this.idMission = idMission;
+	}
+
+	public int getIdEmploye() {
+		return idEmploye;
+	}
+
+	public void setIdEmploye(int idEmploye) {
+		this.idEmploye = idEmploye;
+	}
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -44,5 +44,15 @@ public class Contrat implements Serializable {
 	public Employe getEmploye() {return employe;}
 
 	public void setEmploye(Employe employe) {this.employe = employe;}
+
+	public int getReference() {
+		return reference;
+	}
+
+	public void setReference(int reference) {
+		this.reference = reference;
+	}
+	
+	
 	
 }

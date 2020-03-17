@@ -9,6 +9,7 @@ import entities.Entreprise;
 public interface EntrepriseServiceLocal {
 	public void ajouterEntreprise(Entreprise entreprise);
 	public void ajouterDepartement(Departement dep);
-	void affecterDepartementAEntreprise(int depId, int entrepriseId);
-	List<String> getAllDepartementsNamesByEntreprise(int entrepriseId);
+	public void affecterDepartementAEntreprise(int depId, int entrepriseId);
+	public List<Departement> getAllDepartementsNamesByEntreprise(int entrepriseId);
+	public Departement getDepartementById(int entrepriseId);
 }

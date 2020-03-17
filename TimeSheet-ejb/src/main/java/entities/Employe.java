@@ -45,14 +45,19 @@ public class Employe implements Serializable {
 	
 	// Listes des departemens
 	@ManyToMany(mappedBy="employes")
-	private List<Departement> departements; 
+	private List<Departement> departements = new ArrayList<Departement>();; 
 	
 	@OneToMany(mappedBy="employe")
-	private List<TimeSheet> timesheets;
+	private List<TimeSheet> timesheets=new ArrayList<TimeSheet>();;
 	
-	public Employe() {
-		departements= new ArrayList<Departement>();
-		timesheets= new ArrayList<TimeSheet>();
+	public Employe() {}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getPrenom() {

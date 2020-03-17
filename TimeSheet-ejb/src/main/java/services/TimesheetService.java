@@ -2,6 +2,7 @@ package services;
 
 import java.util.Date;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +13,7 @@ import entities.TimeSheet;
 import interfaces.TimesheetServiceLocal;
 import interfaces.TimesheetServiceRemote;
 
+@Stateless
 public class TimesheetService implements TimesheetServiceLocal, TimesheetServiceRemote {
 	
 	// Création d'un entité manager

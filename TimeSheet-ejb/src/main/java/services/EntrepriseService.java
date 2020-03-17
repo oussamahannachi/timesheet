@@ -1,7 +1,9 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +16,7 @@ import interfaces.EntrepriseServiceRemote;
 public class EntrepriseService implements EntrepriseServiceLocal, EntrepriseServiceRemote {
 
 	// Création d'un entité manager
-	@PersistenceContext(unitName= "timesheet-ejb")
+	@PersistenceContext(unitName="timesheet-ejb")
 	EntityManager em;
 	
 	@Override
@@ -31,15 +33,23 @@ public class EntrepriseService implements EntrepriseServiceLocal, EntrepriseServ
 	public void affecterDepartementAEntreprise(int depId, int entrepriseId) {
 		Entreprise ent = em.find(Entreprise.class, entrepriseId);
 		Departement dep = em.find(Departement.class, depId);
-		ent.getDepartements().add(dep);
+		dep.setEntreprise(ent);
 	}
 
 	@Override
-	public List<String> getAllDepartementsNamesByEntreprise(int entrepriseId) {
-		List<String> names = (List<String>)em.createNamedQuery("select name from departement where entreprise_ID_Entreprise=:id", String.class)
-				.setParameter("id", entrepriseId)
-				.getResultList();
+	public List<Departement> getAllDepartementsNamesByEntreprise(int entrepriseId) {
+		Entreprise ent = em.find(Entreprise.class, entrepriseId);
+		List<Departement> names = new ArrayList<Departement>();
+		for(Departement d : ent.getDepartements()) {
+			names.add(d);
+		}
 		return names;
+	}
+
+	@Override
+	public Departement getDepartementById(int Id) {
+		Departement d=(Departement)em.find(Departement.class, Id);
+		return d;
 	}
 
 }

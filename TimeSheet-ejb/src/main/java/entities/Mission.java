@@ -36,10 +36,14 @@ public class Mission implements Serializable {
 	protected Departement departement ;
 	
 	@OneToMany(mappedBy="mission")
-	private List<TimeSheet> timesheets;
+	private List<TimeSheet> timesheets=timesheets = new ArrayList<TimeSheet>() ;
 	
-	public Mission() { timesheets = new ArrayList<TimeSheet>() ; }
+	public Mission() {  }
 
+	public int getId() { return id;}
+	
+	public void setId(int id) { this.id = id;}
+	
 	public String getName() { return name; }
 
 	public void setName(String name) { this.name = name; }
